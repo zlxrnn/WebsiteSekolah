@@ -153,29 +153,35 @@
 
           <div class="my-10 flex flex-col justify-center items-center h-37 w-44 bg-grey rounded shadow-2xl">
             <h1 class="text-2xl mb-2 font-bold">Student</h1>
-            <img src="assets/icon/siswa.png" alt="" />
             <div class="flex flex-row gap-3">
+              <img src="assets/icon/siswa.png" alt="" />
               <h1 class="text-4xl font-extrabold"><?php echo $data_student['total']; ?></h1>
             </div>
           </div>
 
           <div class="my-10 flex flex-col justify-center items-center h-37 w-44 bg-grey rounded shadow-2xl">
             <h1 class="text-2xl mb-2 font-bold">Major</h1>
-            <img src="assets/icon/jurusan.png" alt=""/>
-            <h1 class="text-4xl font-extrabold"><?php echo $data_major['total']; ?></h1>
+            <div class="flex flex-row gap-3">
+              <img src="assets/icon/jurusan.png" alt=""/>
+              <h1 class="text-4xl font-extrabold"><?php echo $data_major['total']; ?></h1>
+            </div>
           </div>
 
           <div class="my-10 flex flex-col justify-center items-center h-37 w-44 bg-grey rounded shadow-2xl">
             <h1 class="text-2xl mb-2 font-bold">Subject</h1>
-            <img src="assets/icon/mapel.png" alt=""/>
-            <h1 class="text-4xl font-extrabold"><?php echo $data_subject['total']; ?></h1>
+            <div class="flex flex-row gap-3">
+              <img src="assets/icon/mapel.png" alt=""/>
+              <h1 class="text-4xl font-extrabold"><?php echo $data_subject['total']; ?></h1>
+            </div>
           </div>
 
           <div class="my-10 flex flex-col justify-center items-center h-37 w-44 bg-grey rounded shadow-2xl">
             <h1 class="text-2xl mb-2 font-bold">Extraculliculer</h1>
-            <img src="assets/icon/ekstra.png" alt=""/>
-            <h1 class="text-4xl font-extrabold"><?php echo $data_extracurricular['total']; ?></h1>
-          </div>
+            <div class="flex flex-row gap-3">          
+              <img src="assets/icon/ekstra.png" alt=""/>
+              <h1 class="text-4xl font-extrabold"><?php echo $data_extracurricular['total']; ?></h1>
+            </div>
+              </div>
         </div>
       </div>
 
