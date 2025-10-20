@@ -1,4 +1,4 @@
-<?php include '../koneksi.php'; ?>
+<?php include '/koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -123,8 +123,13 @@
               </div>
             </form>
           </div>
-          <div class="flex flex-row w-full">
-            <div class="flex"></div>
+          <div class="flex flex-row w-full justify-between">
+            <div class="flex flex-row gap-5">
+              <div class="flex flex-row h-15 w-41 justify-center items-center rounded-[10px] mt-5 border-primary border-2">Class</div>
+              <div class="flex flex-row h-15 w-41 justify-center items-center rounded-[10px] mt-5 border-primary border-2">Major</div>
+
+            </div>
+
             <button
               type="submit"
               name="simpan"
