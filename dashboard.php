@@ -7,6 +7,7 @@ if(!isset($_SESSION['username'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
@@ -73,14 +74,14 @@ if(!isset($_SESSION['username'])){
         </div>
 
         <!-- Log out -->
-        <div class="flex px-5 py-7 items-center w-full">
-          <div
-            class="flex justify-center items-center h-12 w-40 rounded-[12px] gap-3 bg-white"
-          >
-            <img src="assets/icon/logout-icon.png" alt="" />
-            <a href="logout.php" class="text-red"> Logout</a>
+          <div class="flex px-5 py-7 items-center justify-center w-full">
+            <div
+              class="flex justify-center items-center h-12 w-40 rounded-[12px] gap-3 bg-white"
+            >
+              <img src="./assets/icon/logout-icon.png" alt="" />
+              <a href="./logout.php" class="text-red"> Logout</a>
+            </div>
           </div>
-        </div>
       </nav>
 
       <!-- Main Content -->
