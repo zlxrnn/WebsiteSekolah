@@ -114,16 +114,16 @@ $no = 1;
 $data = mysqli_query($conn, "SELECT * FROM siswa");
 while($d = mysqli_fetch_array($data)){
 ?>
-          <tr>
+          <tr class=" border-solid border h-22">
     <td><?= $no++; ?></td>
     <td><?= $d['nis']; ?></td>
     <td><?= $d['nama']; ?></td>
     <td><?= $d['kelas']; ?></td>
     <td><?= $d['jurusan']; ?></td>
     <td>
-       <a href="edit.php?id=<?= $d['id']; ?>" class=" flex w-14 rounded-full h-13 justify-center items-center bg-primary"><img src="/assets/icon/edit.png" alt=""></a>
-        <a href="hapus.php?id=<?= $d['id']; ?>" class=" flex w-14 rounded-full h-13 justify-center items-center bg-red"><img src="/assets/icon/sampah-icon.png" alt=""></a>
-        </td>
+        <a href="edit.php?id=<?= $d['id']; ?>" class="abtn flex w-14 rounded-full h-13 justify-center items-center bg-primary"><img src="/assets/icon/edit.png" alt=""></a>
+        <a href="hapus.php?id=<?= $d['id']; ?>" class="abtn flex w-14 rounded-full h-13 justify-center items-center bg-red"><img src="/assets/icon/sampah-icon.png" alt=""></a>
+    </td>
 </tr>
 <?php }
  ?>

@@ -99,6 +99,27 @@
     border-color: inherit;
     border-collapse: collapse;
   }
+  th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+  }
+
+  th {
+      background: var(--color-primary);
+      color: white;
+  }
+  a.abtn {
+      background: #0056d6;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-decoration: none;
+  }
+
+  a.abtn:hover {
+    background: #003f91;
+  }
   :-moz-focusring {
     outline: auto;
   }
