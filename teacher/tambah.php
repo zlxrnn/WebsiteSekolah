@@ -135,17 +135,17 @@
       </div>
     </div>
 
-<?php
-if(isset($_POST['simpan'])){
-    $nip = $_POST['nip'];
-    $nama = $_POST['nama'];
-    $mapel = $_POST['mapel'];
-    
-    mysqli_query($conn, "INSERT INTO guru (nip, nama, ,mapel) 
-                          VALUES ('$nip', '$nama', '$mapel')");
-    
-    echo "<script>alert('Data guru berhasil disimpan');window.location='teacher.php';</script>";
-}
-?>
+    <?php
+    if(isset($_POST['simpan'])){
+        $nip = $_POST['nip'];
+        $nama = $_POST['nama'];
+        $mapel = $_POST['mapel'];
+        
+        mysqli_query($conn, "INSERT INTO guru (nip, nama, mapel) 
+                              VALUES ('$nip', '$nama', '$mapel')");
+        
+        echo "<script>alert('Data guru berhasil disimpan');window.location='teacher.php';</script>";
+    }
+    ?>
   </body>
 </html>

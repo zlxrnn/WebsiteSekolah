@@ -107,22 +107,6 @@
                   </select>
                 </div>
 
-                <div class="relative w-full my-3">
-                  <label class="my-2 text-primary">Subject Teacher</label>
-                  <select
-                    name="guru_pengajar"
-                    required
-                    class="w-full p-4 border-2 border-primary rounded-[10px] appearance-none"
-                  >
-                    <option value="">Select Teacher</option>
-                    <?php
-                    $teacher_query = mysqli_query($conn, "SELECT * FROM guru ORDER BY nama");
-                    while($teacher = mysqli_fetch_array($teacher_query)){
-                    ?>
-                    <option value="<?= $teacher['nama']; ?>"><?= $teacher['nama']; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
               </div>
               
               <div class="flex justify-end w-full mt-5">
@@ -142,12 +126,11 @@
 
 <?php
 if(isset($_POST['simpan'])){
-    $mapel = $_POST['mapel'];
+    $mapel = $_POST['nama_mapel'];
     $kelas = $_POST['kelas'];
-    $guru = $_POST['guru'];
     
-    mysqli_query($conn, "INSERT INTO mapel (nama, kelas, guru) 
-                        VALUES ('$nama', '$kelas', '$guru'");
+    mysqli_query($conn, "INSERT INTO mapel (mapel, kelas) 
+                        VALUES ('$mapel', '$kelas')");
     
     echo "<script>alert('Data mata pelajaran berhasil disimpan');window.location='subject.php';</script>";
 }

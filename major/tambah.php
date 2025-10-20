@@ -135,7 +135,7 @@ if(isset($_POST['simpan'])){
     $nama = $_POST['nama'];
     $informasi = $_POST['informasi'];
 
-    mysqli_query($conn, "INSERT INTO jurusan (kode, nama_jurusan, informasi) 
+    mysqli_query($conn, "INSERT INTO jurusan (code, nama, informasi) 
                         VALUES ('$kode', '$nama', '$informasi')");
     
     echo "<script>alert('Data jurusan berhasil disimpan');window.location='major.php';</script>";
