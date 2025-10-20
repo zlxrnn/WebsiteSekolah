@@ -4,8 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/output.css" rel="stylesheet" />
-    <title>Document</title>
+    <link href="../output.css" rel="stylesheet" />
+    <title>Siswa - Dashboard</title>
   </head>
   <body>
     <div class="flex gap-5">
@@ -18,7 +18,7 @@
           <div
             class="flex flex-row mb-15 p-6 gap-3 items-center justify-center"
           >
-            <img src="/assets/logo_TI.png" alt="" class="w-14" />
+            <img src="../assets/logo_TI.png" alt="" class="w-14" />
             <h1 class="font-bold">SMK TI BALI GLOBAL DENPASAR</h1>
           </div>
 
@@ -28,45 +28,45 @@
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/home-icon.png" alt="" />
-            <a href="/dashboard.php" class="text-[20px] font-bold">Dashboard</a>
+            <img src="../assets/icon/home-icon.png" alt="" />
+            <a href="../dashboard.php" class="text-[20px] font-bold">Dashboard</a>
           </div>
 
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 bg-[var(--color-secondary)] hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/student-icon.png" alt="" />
-            <a href="/student/student.php" class="text-[20px] font-bold"
+            <img src="../assets/icon/student-icon.png" alt="" />
+            <a href="../student/student.php" class="text-[20px] font-bold"
               >Student</a
             >
           </div>
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/teacher-icon.png" alt="" />
-            <a href="/teacher/teacher.html" class="text-[20px] font-bold"
+            <img src="../assets/icon/teacher-icon.png" alt="" />
+            <a href="../teacher/teacher.html" class="text-[20px] font-bold"
               >Teacher</a
             >
           </div>
           <div
             class="flex items-center gap-3 w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/major-icon.png" alt="" />
-            <a href="/major/major.html" class="text-[20px] font-bold">Major</a>
+            <img src="../assets/icon/major-icon.png" alt="" />
+            <a href="../major/major.html" class="text-[20px] font-bold">Major</a>
           </div>
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/subject-icon.png" alt="" />
-            <a href="/subject/subject.html" class="text-[20px] font-bold">
+            <img src="../assets/icon/subject-icon.png" alt="" />
+            <a href="../subject/subject.html" class="text-[20px] font-bold">
               Subjects
             </a>
           </div>
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-            <img src="/assets/icon/extracurricular-icon.png" alt="" />
-            <a href="/extra/extra.html" class="text-[20px] font-bold"
+            <img src="../assets/icon/extracurricular-icon.png" alt="" />
+            <a href="../extra/extra.html" class="text-[20px] font-bold"
               >Extraculliculer</a
             >
           </div>
@@ -76,8 +76,8 @@
             <div
               class="flex justify-center items-center h-12 w-40 rounded-[12px] gap-3 bg-white"
             >
-              <img src="/assets/icon/logout-icon.png" alt="" />
-              <a href="/index.php" class="text-red"> Logout</a>
+              <img src="../assets/icon/logout-icon.png" alt="" />
+              <a href="../index.php" class="text-red"> Logout</a>
             </div>
           </div>
         </nav>
@@ -96,7 +96,7 @@
             <input class="w-80 p-4 border-2 border-primary rounded-[10px] focus:" type="text" name="" required placeholder="Find Student"/>
             
           </div>
-           <button type="submit" name="add" class="flex py-4 h-15 rounded-2xl w-50 bg-yellow my-6 justify-center font-bold text-white">Add Data</button>
+            <a href="tambah.php" class="flex py-4 h-15 rounded-2xl w-50 bg-yellow my-6 justify-center font-bold text-white">Add Data</a>
           
           </div>
         </div>
@@ -111,7 +111,7 @@
           </tr>
 <?php
 $no = 1;
-$data = mysqli_query($koneksi, "SELECT * FROM siswa");
+$data = mysqli_query($conn, "SELECT * FROM siswa");
 while($d = mysqli_fetch_array($data)){
 ?>
           <tr>
