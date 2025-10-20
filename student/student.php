@@ -1,4 +1,4 @@
-<?php include '../koneksi.php'; ?>
+<?php include './koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,7 +44,7 @@
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
             <img src="../assets/icon/teacher-icon.png" alt="" />
-            <a href="../teacher/teacher.html" class="text-[20px] font-bold"
+            <a href="../teacher/teacher.php" class="text-[20px] font-bold"
               >Teacher</a
             >
           </div>
@@ -52,13 +52,13 @@
             class="flex items-center gap-3 w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
             <img src="../assets/icon/major-icon.png" alt="" />
-            <a href="../major/major.html" class="text-[20px] font-bold">Major</a>
+            <a href="../major/major.php" class="text-[20px] font-bold">Major</a>
           </div>
           <div
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
             <img src="../assets/icon/subject-icon.png" alt="" />
-            <a href="../subject/subject.html" class="text-[20px] font-bold">
+            <a href="../subject/subject.php" class="text-[20px] font-bold">
               Subjects
             </a>
           </div>
@@ -66,7 +66,7 @@
             class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
             <img src="../assets/icon/extracurricular-icon.png" alt="" />
-            <a href="../extra/extra.html" class="text-[20px] font-bold"
+            <a href="../extra/extra.php" class="text-[20px] font-bold"
               >Extraculliculer</a
             >
           </div>
