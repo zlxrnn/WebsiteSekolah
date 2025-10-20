@@ -101,15 +101,16 @@
             <a href="./tambah.php" class="flex py-4 h-15 rounded-2xl w-50 bg-yellow my-6 justify-center font-bold text-white">Add Data</a>
           </div>
         </div>
-        <div>
+        
+        <div class="overflow-x-auto max-h-96">
           <table class="border-collapse w-full">
             <thead>
               <tr class="border border-solid rounded-[10px] h-22 bg-primary">
-                  <th class=" text-white">NO</th>
-                  <th class=" text-white">NIP</th>
-                  <th class=" text-white">NAME</th>
-                  <th class=" text-white">SUBJECT</th>
-                  <th class=" text-white">ACTION</th>
+                  <th class="text-white py-3 px-4 text-center">NO</th>
+                  <th class="text-white py-3 px-4 text-center">NIP</th>
+                  <th class="text-white py-3 px-4 text-center">NAME</th>
+                  <th class="text-white py-3 px-4 text-center">SUBJECT</th>
+                  <th class="text-white py-3 px-4 text-center">ACTION</th>
               </tr>
             </thead>
             <tbody>
@@ -128,7 +129,8 @@
                 $search_query = $search_condition;
               }
               
-              $total_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM guru");
+              // PERBAIKAN: Gunakan count_query dengan search condition
+              $total_query = mysqli_query($conn, $count_query . $search_query);
               $total_data = mysqli_fetch_assoc($total_query)['total'];
               $total_pages = ceil($total_data / $limit);
 
@@ -136,20 +138,20 @@
               $data = mysqli_query($conn, $data_query);
 
               $no = $offset + 1;
-              if (mysqli_num_rows($data) > 0) {
+              if ($data && mysqli_num_rows($data) > 0) {
                 while($d = mysqli_fetch_array($data)){
                 ?>
                     <tr class="border-solid border h-22 transition-all duration-200 hover:bg-gray-100">
-                        <td class="py-3 px-4"><?= $no++; ?></td>
-                        <td class="py-3 px-4"><?= $d['nip']; ?></td>
-                        <td class="py-3 px-4"><?= $d['nama']; ?></td>
-                        <td class="py-3 px-4"><?= $d['mapel']; ?></td>
-                        <td class="py-3 px-4">
+                        <td class="py-3 px-4 text-center"><?= $no++; ?></td>
+                        <td class="py-3 px-4 text-center"><?= $d['nip']; ?></td>
+                        <td class="py-3 px-4 text-center"><?= $d['nama']; ?></td>
+                        <td class="py-3 px-4 text-center"><?= $d['mapel']; ?></td>
+                        <td class="py-3 px-4 text-center">
                             <div class="flex gap-3 justify-center">
                               <a href="edit.php?id=<?= $d['id']; ?>" class="abtn flex w-14 rounded-full h-13 justify-center items-center bg-primary hover:bg-primary-dark transition-colors">
                                   <img src="../assets/icon/edit.png" alt="Edit">
                               </a>
-                              <a href="hapus.php?id=<?= $d['id']; ?>" onclick="return confirm('Are you sure you want to delete this student?')" class="abtn flex w-14 rounded-full h-13 justify-center items-center bg-red hover:bg-red-dark transition-colors">
+                              <a href="hapus.php?id=<?= $d['id']; ?>" onclick="return confirm('Are you sure you want to delete this teacher?')" class="abtn flex w-14 rounded-full h-13 justify-center items-center bg-red hover:bg-red-dark transition-colors">
                                   <img src="../assets/icon/sampah-icon.png" alt="Delete">
                               </a>
                             </div>
@@ -159,7 +161,9 @@
               } else {
                 ?>
                 <tr>
-                  <td colspan="6" class="py-4 px-4 text-center text-gray-500">No data available</td>
+                  <td colspan="5" class="py-4 px-4 text-center text-gray-500">
+                    <?= isset($_GET['search']) ? 'No teachers found for "' . htmlspecialchars($_GET['search']) . '"' : 'No data available' ?>
+                  </td>
                 </tr>
                 <?php
               }
@@ -171,10 +175,11 @@
         <div class="flex justify-between items-center mt-4 px-6">
           <div class="text-sm text-gray-600">
             Showing <?= $offset + 1 ?> to <?= min($offset + $limit, $total_data) ?> of <?= $total_data ?> entries
+            <?= isset($_GET['search']) ? ' for "' . htmlspecialchars($_GET['search']) . '"' : '' ?>
           </div>
           <div class="flex gap-3">
             <?php if ($page > 1): ?>
-              <a href="?page=<?= $page - 1 ?>" class="px-5 py-3 bg-primary text-white rounded-[10px] hover:bg-primary-dark transition-colors">
+              <a href="?page=<?= $page - 1 ?><?= isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '' ?>" class="px-5 py-3 bg-primary text-white rounded-[10px] hover:bg-primary-dark transition-colors">
                 Previous
               </a>
             <?php endif; ?>
@@ -185,17 +190,19 @@
             
             for ($i = $start_page; $i <= $end_page; $i++): 
             ?>
-              <a href="?page=<?= $i ?>" class="px-5 py-3 rounded-[10px] <?= $i == $page ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' ?> transition-colors">
+              <a href="?page=<?= $i ?><?= isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '' ?>" class="px-5 py-3 rounded-[10px] <?= $i == $page ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' ?> transition-colors">
                 <?= $i ?>
               </a>
             <?php endfor; ?>
             
             <?php if ($page < $total_pages): ?>
-              <a href="?page=<?= $page + 1 ?>" class="px-5 py-3 bg-primary text-white rounded-[10px] hover:bg-primary-dark transition-colors">
+              <a href="?page=<?= $page + 1 ?><?= isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '' ?>" class="px-5 py-3 bg-primary text-white rounded-[10px] hover:bg-primary-dark transition-colors">
                 Next
               </a>
             <?php endif; ?>
           </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

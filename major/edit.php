@@ -1,4 +1,39 @@
-<?php include '../koneksi.php'; ?>
+<?php include '../koneksi.php'; 
+
+// Ambil data jurusan berdasarkan ID
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = mysqli_query($conn, "SELECT * FROM jurusan WHERE id='$id'");
+    $data = mysqli_fetch_array($query);
+    
+    if(!$data) {
+        echo "<script>alert('Data jurusan tidak ditemukan');window.location='major.php';</script>";
+        exit();
+    }
+} else {
+    echo "<script>alert('ID jurusan tidak valid');window.location='major.php';</script>";
+    exit();
+}
+
+// Proses update data
+if(isset($_POST['update'])){
+    $kode = $_POST['kode'];
+    $nama = $_POST['nama'];
+    $informasi = $_POST['informasi'];
+    
+    $update_query = "UPDATE jurusan SET 
+        code='$kode', 
+        nama='$nama', 
+        informasi='$informasi'
+        WHERE id='$id'";
+    
+    if(mysqli_query($conn, $update_query)) {
+        echo "<script>alert('Data jurusan berhasil diperbarui');window.location='major.php';</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Jurusan</title>
+    <title>Edit Jurusan</title>
     <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
@@ -83,12 +118,13 @@
               <div class="relative w-full my-3">
                 <label class="my-2 text-primary">Major Code</label>
                 <input
-                  type="number"
+                  type="text"
                   id="kode"
                   name="kode"
                   required
                   placeholder="Major Code (e.g., RPL, TKJ, MM)"
                   class="w-full p-4 border-2 border-primary rounded-[10px]"
+                  value="<?= $data['code'] ?>"
                 />
               </div>
 
@@ -101,6 +137,7 @@
                   name="nama"
                   required
                   placeholder="Major Name (e.g., Rekayasa Perangkat Lunak)"
+                  value="<?= $data['nama'] ?>"
                 />
               </div>
 
@@ -111,16 +148,16 @@
                   required
                   placeholder="Major description and information"
                   class="w-full p-4 border-2 border-primary rounded-[10px] h-32 resize-none"
-                ></textarea>
+                ><?= $data['informasi'] ?></textarea>
               </div>
               
               <div class="flex justify-end w-full mt-5">
                 <button
                   type="submit"
-                  name="simpan"
+                  name="update"
                   class="flex h-15 w-40 justify-center items-center rounded-[10px] bg-primary text-white"
                 >
-                  Confirm
+                  Update
                 </button>
               </div>
             </form>
@@ -128,18 +165,5 @@
         </div>
       </div>
     </div>
-
-<?php
-if(isset($_POST['simpan'])){
-    $kode = $_POST['kode'];
-    $nama = $_POST['nama'];
-    $informasi = $_POST['informasi'];
-
-    mysqli_query($conn, "INSERT INTO jurusan (code, nama, informasi) 
-                        VALUES ('$kode', '$nama', '$informasi')");
-    
-    echo "<script>alert('Data jurusan berhasil disimpan');window.location='major.php';</script>";
-}
-?>
   </body>
 </html>

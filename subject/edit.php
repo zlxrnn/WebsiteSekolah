@@ -1,4 +1,35 @@
-<?php include '../koneksi.php'; ?>
+<?php include '../koneksi.php'; 
+
+  if(isset($_GET['id'])) {
+      $id = $_GET['id'];
+      $query = mysqli_query($conn, "SELECT * FROM mapel WHERE id='$id'");
+      $data = mysqli_fetch_array($query);
+      
+      if(!$data) {
+          echo "<script>alert('Data siswa tidak ditemukan');window.location='subject.php';</script>";
+          exit();
+      }
+  } else {
+      echo "<script>alert('ID siswa tidak valid');window.location='subject.php';</script>";
+      exit();
+  }
+
+  if(isset($_POST['update'])){
+      $mapel = $_POST['nama_mapel'];
+      $kelas = $_POST['kelas'];
+      
+      $update_query = "UPDATE mapel SET 
+          mapel='$mapel', 
+          kelas='$kelas'
+          WHERE id='$id'";
+      
+      if(mysqli_query($conn, $update_query)) {
+          echo "<script>alert('Data siswa berhasil diperbarui');window.location='subject.php';</script>";
+      } else {
+          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+      }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -89,6 +120,7 @@
                   required
                   placeholder="Subject Name"
                   class="w-full p-4 border-2 border-primary rounded-[10px]"
+                  value="<?= $data['mapel'] ?>"
                 />
               </div>
 
@@ -101,9 +133,9 @@
                     class="w-full p-4 border-2 border-primary rounded-[10px] appearance-none"
                   >
                     <option value="">Select Class</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
+                    <option value="X" <?= $data['kelas'] == 'X' ? 'selected' : '' ?>>X</option>
+                    <option value="XI" <?= $data['kelas'] == 'XI' ? 'selected' : '' ?>>XI</option>
+                    <option value="XII" <?= $data['kelas'] == 'XII' ? 'selected' : '' ?>>XII</option>
                   </select>
                 </div>
 
@@ -112,7 +144,7 @@
               <div class="flex justify-end w-full mt-5">
                 <button
                   type="submit"
-                  name="simpan"
+                  name="update"
                   class="flex h-15 w-40 justify-center items-center rounded-[10px] bg-primary text-white"
                 >
                   Confirm
@@ -123,17 +155,5 @@
         </div>
       </div>
     </div>
-
-<?php
-if(isset($_POST['simpan'])){
-    $mapel = $_POST['nama_mapel'];
-    $kelas = $_POST['kelas'];
-    
-    mysqli_query($conn, "INSERT INTO mapel (mapel, kelas) 
-                        VALUES ('$mapel', '$kelas')");
-    
-    echo "<script>alert('Data mata pelajaran berhasil disimpan');window.location='subject.php';</script>";
-}
-?>
   </body>
 </html>

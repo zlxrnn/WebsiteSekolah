@@ -1,4 +1,37 @@
-<?php include '../koneksi.php'; ?>
+<?php include '../koneksi.php'; 
+
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = mysqli_query($conn, "SELECT * FROM guru WHERE id='$id'");
+    $data = mysqli_fetch_array($query);
+    
+    if(!$data) {
+        echo "<script>alert('Data guru tidak ditemukan');window.location='teacher.php';</script>";
+        exit();
+    }
+} else {
+    echo "<script>alert('ID guru tidak valid');window.location='teacher.php';</script>";
+    exit();
+}
+
+if(isset($_POST['update'])){
+    $nip = $_POST['nip'];
+    $nama = $_POST['nama'];
+    $mapel = $_POST['mapel'];
+    
+    $update_query = "UPDATE guru SET 
+        nip='$nip', 
+        nama='$nama', 
+        mapel='$mapel'
+        WHERE id='$id'";
+    
+    if(mysqli_query($conn, $update_query)) {
+        echo "<script>alert('Data guru berhasil diperbarui');window.location='teacher.php';</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Guru</title>
+    <title>Edit Guru</title>
     <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
@@ -88,6 +121,7 @@
                   required
                   placeholder="Teacher NIP"
                   class="w-full p-4 border-2 border-primary rounded-[10px]"
+                  value="<?= $data['nip'] ?>"
                 />
               </div>
 
@@ -100,6 +134,7 @@
                   name="nama"
                   required
                   placeholder="Teacher Name"
+                  value="<?= $data['nama'] ?>"
                 />
               </div>
 
@@ -115,7 +150,9 @@
                   $mapel_query = mysqli_query($conn, "SELECT * FROM mapel ORDER BY mapel");
                   while($mapel = mysqli_fetch_array($mapel_query)){
                   ?>
-                  <option value="<?= $mapel['mapel']; ?>"><?= $mapel['mapel']; ?></option>
+                  <option value="<?= $mapel['mapel']; ?>" <?= $data['mapel'] == $mapel['mapel'] ? 'selected' : '' ?>>
+                    <?= $mapel['mapel']; ?>
+                  </option>
                   <?php } ?>
                 </select>
               </div>
@@ -123,10 +160,10 @@
               <div class="flex justify-end w-full mt-5">
                 <button
                   type="submit"
-                  name="simpan"
+                  name="update"
                   class="flex h-15 w-40 justify-center items-center rounded-[10px] bg-primary text-white"
                 >
-                  Confirm
+                  Update
                 </button>
               </div>
             </form>
@@ -134,18 +171,5 @@
         </div>
       </div>
     </div>
-
-    <?php
-    if(isset($_POST['simpan'])){
-        $nip = $_POST['nip'];
-        $nama = $_POST['nama'];
-        $mapel = $_POST['mapel'];
-        
-        mysqli_query($conn, "INSERT INTO guru (nip, nama, mapel) 
-                              VALUES ('$nip', '$nama', '$mapel')");
-        
-        echo "<script>alert('Data guru berhasil disimpan');window.location='teacher.php';</script>";
-    }
-    ?>
   </body>
 </html>

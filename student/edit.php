@@ -1,4 +1,39 @@
-<?php include '../koneksi.php'; ?>
+<?php include '../koneksi.php'; 
+
+  if(isset($_GET['id'])) {
+      $id = $_GET['id'];
+      $query = mysqli_query($conn, "SELECT * FROM siswa WHERE id='$id'");
+      $data = mysqli_fetch_array($query);
+      
+      if(!$data) {
+          echo "<script>alert('Data siswa tidak ditemukan');window.location='student.php';</script>";
+          exit();
+      }
+  } else {
+      echo "<script>alert('ID siswa tidak valid');window.location='student.php';</script>";
+      exit();
+  }
+
+  if(isset($_POST['update'])){
+      $nama = $_POST['name'];
+      $nis = $_POST['nis'];
+      $kelas = $_POST['kelas'];
+      $jurusan = $_POST['jurusan'];
+      
+      $update_query = "UPDATE siswa SET 
+          nama='$nama', 
+          nis='$nis', 
+          kelas='$kelas', 
+          jurusan='$jurusan' 
+          WHERE id='$id'";
+      
+      if(mysqli_query($conn, $update_query)) {
+          echo "<script>alert('Data siswa berhasil diperbarui');window.location='student.php';</script>";
+      } else {
+          echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+      }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Siswa</title>
+    <title>Edit Siswa</title>
     <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
@@ -89,6 +124,7 @@
                   required
                   placeholder="Your Name"
                   class="w-full p-4 border-2 border-primary rounded-[10px]"
+                  value="<?= $data['nama'] ?>"
                 />
               </div>
 
@@ -101,6 +137,7 @@
                   name="nis"
                   required
                   placeholder="Your NIS"
+                  value="<?= $data['nis'] ?>"
                 />
               </div>
 
@@ -113,9 +150,9 @@
                     class="w-full p-4 border-2 border-primary rounded-[10px] appearance-none"
                   >
                     <option value="">Select Class</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
+                    <option value="X" <?= $data['kelas'] == 'X' ? 'selected' : '' ?>>X</option>
+                    <option value="XI" <?= $data['kelas'] == 'XI' ? 'selected' : '' ?>>XI</option>
+                    <option value="XII" <?= $data['kelas'] == 'XII' ? 'selected' : '' ?>>XII</option>
                   </select>
                 </div>
 
@@ -131,7 +168,9 @@
                     $major_query = mysqli_query($conn, "SELECT * FROM jurusan ORDER BY nama");
                     while($major = mysqli_fetch_array($major_query)){
                     ?>
-                    <option value="<?= $major['nama']; ?>"><?= $major['nama']; ?></option>
+                    <option value="<?= $major['nama']; ?>" <?= $data['jurusan'] == $major['nama'] ? 'selected' : '' ?>>
+                      <?= $major['nama']; ?>
+                    </option>
                     <?php } ?>
                   </select>
                 </div>
@@ -140,10 +179,10 @@
               <div class="flex justify-end w-full mt-5">
                 <button
                   type="submit"
-                  name="simpan"
+                  name="update"
                   class="flex h-15 w-40 justify-center items-center rounded-[10px] bg-primary text-white"
                 >
-                  Confirm
+                  Update
                 </button>
               </div>
             </form>
@@ -151,13 +190,5 @@
         </div>
       </div>
     </div>
-
-<?php
-if(isset($_POST['simpan'])){
-    mysqli_query($conn, "INSERT INTO siswa (nama, nis, kelas, jurusan)
-    VALUES ('$_POST[name]','$_POST[nis]','$_POST[kelas]','$_POST[jurusan]')");
-    echo "<script>alert('Data siswa berhasil disimpan');window.location='student.php';</script>";
-}
-?>
   </body>
 </html>

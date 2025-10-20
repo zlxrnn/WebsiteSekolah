@@ -1,4 +1,50 @@
-<?php include '../koneksi.php'; ?>
+<?php include '../koneksi.php'; 
+
+// Ambil data ekstrakurikuler berdasarkan ID
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = mysqli_query($conn, "SELECT * FROM ekstra WHERE id='$id'");
+    $data = mysqli_fetch_array($query);
+    
+    if(!$data) {
+        echo "<script>alert('Data ekstrakurikuler tidak ditemukan');window.location='extra.php';</script>";
+        exit();
+    }
+    
+    // Jika timetable hanya berisi jam mulai saja
+    $jam_mulai = $data['timetable']; // Langsung ambil dari timetable
+    $hari = $data['hari']; // Ambil hari dari kolom terpisah
+    $jam_selesai = ''; // Kosongkan jam selesai atau set default
+    
+} else {
+    echo "<script>alert('ID ekstrakurikuler tidak valid');window.location='extra.php';</script>";
+    exit();
+}
+
+// Proses update data
+if(isset($_POST['update'])){
+    $nama_ekstra = $_POST['nama_ekstra'];
+    $hari = $_POST['hari'];
+    $jam_mulai = $_POST['jam_mulai'];
+    $guru_ekstra = $_POST['guru_ekstra'];
+    
+    // Jika timetable hanya jam mulai
+    $timetable = $jam_mulai;
+    
+    $update_query = "UPDATE ekstra SET 
+        nama='$nama_ekstra', 
+        hari='$hari', 
+        timetable='$timetable', 
+        guru='$guru_ekstra'
+        WHERE id='$id'";
+    
+    if(mysqli_query($conn, $update_query)) {
+        echo "<script>alert('Data ekstrakurikuler berhasil diperbarui');window.location='extra.php';</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +52,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Ekstrakurikuler</title>
+    <title>Edit Ekstrakurikuler</title>
     <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
@@ -89,6 +135,7 @@
                   required
                   placeholder="Extracurricular Name"
                   class="w-full p-4 border-2 border-primary rounded-[10px]"
+                  value="<?= $data['nama'] ?>"
                 />
               </div>
 
@@ -101,34 +148,24 @@
                     class="w-full p-4 border-2 border-primary rounded-[10px] appearance-none"
                   >
                     <option value="">Select Day</option>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
+                    <option value="Monday" <?= $hari == 'Monday' ? 'selected' : '' ?>>Monday</option>
+                    <option value="Tuesday" <?= $hari == 'Tuesday' ? 'selected' : '' ?>>Tuesday</option>
+                    <option value="Wednesday" <?= $hari == 'Wednesday' ? 'selected' : '' ?>>Wednesday</option>
+                    <option value="Thursday" <?= $hari == 'Thursday' ? 'selected' : '' ?>>Thursday</option>
+                    <option value="Friday" <?= $hari == 'Friday' ? 'selected' : '' ?>>Friday</option>
+                    <option value="Saturday" <?= $hari == 'Saturday' ? 'selected' : '' ?>>Saturday</option>
                   </select>
                 </div>
 
                 <div class="relative w-full my-3">
-                  <label class="my-2 text-primary">Start Time</label>
+                  <label class="my-2 text-primary">Time</label>
                   <input
                     type="time"
                     id="jam_mulai"
                     name="jam_mulai"
                     required
                     class="w-full p-4 border-2 border-primary rounded-[10px]"
-                  />
-                </div>
-
-                <div class="relative w-full my-3">
-                  <label class="my-2 text-primary">End Time</label>
-                  <input
-                    type="time"
-                    id="jam_selesai"
-                    name="jam_selesai"
-                    required
-                    class="w-full p-4 border-2 border-primary rounded-[10px]"
+                    value="<?= $jam_mulai ?>"
                   />
                 </div>
               </div>
@@ -146,7 +183,9 @@
                     $teacher_query = mysqli_query($conn, "SELECT * FROM guru ORDER BY nama");
                     while($teacher = mysqli_fetch_array($teacher_query)){
                     ?>
-                    <option value="<?= $teacher['nama']; ?>"><?= $teacher['nama']; ?></option>
+                    <option value="<?= $teacher['nama']; ?>" <?= $data['guru'] == $teacher['nama'] ? 'selected' : '' ?>>
+                      <?= $teacher['nama']; ?>
+                    </option>
                     <?php } ?>
                   </select>
                 </div>
@@ -155,10 +194,10 @@
               <div class="flex justify-end w-full mt-5">
                 <button
                   type="submit"
-                  name="simpan"
+                  name="update"
                   class="flex h-15 w-40 justify-center items-center rounded-[10px] bg-primary text-white"
                 >
-                  Confirm
+                  Update
                 </button>
               </div>
             </form>
@@ -166,24 +205,5 @@
         </div>
       </div>
     </div>
-
-    <?php
-    if(isset($_POST['simpan'])){
-        $nama_ekstra = $_POST['nama_ekstra'];
-        $hari = $_POST['hari'];
-        $jam_mulai = $_POST['jam_mulai'];
-        $jam_selesai = $_POST['jam_selesai'];
-        $guru_ekstra = $_POST['guru_ekstra'];
-        
-        $query = "INSERT INTO ekstra (nama, hari, timetable, guru) 
-                VALUES ('$nama_ekstra', '$hari', '$jam_mulai', '$guru_ekstra')";
-        
-        if(mysqli_query($conn, $query)) {
-            echo "<script>alert('Data ekstrakurikuler berhasil disimpan');window.location='extra.php';</script>";
-        } else {
-            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
-        }
-    }
-    ?>
   </body>
 </html>
