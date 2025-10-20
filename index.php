@@ -24,7 +24,7 @@ if(isset($_SESSION['username'])){
   <body class="w-full h-full overflow-hidden">
     <section class="flex gap-6 w-full h-screen">
       <div
-        class="flex flex-col bg-[url('./assets/img_hero.png')] w-200 bg-cover bg-center bg-no-repeat relative text-left justify-center items-center"
+        class="flex flex-col bg-[url('./assets/img_hero.png')] w-150 bg-cover bg-center bg-no-repeat relative text-left justify-center items-center"
       >
         <div class="flex flex-col items-start justify-center">
           <h1 class="text-7xl font-bold text-white text-left mb-5 max-w-82">
