@@ -9,49 +9,79 @@
   </head>
   <body>
     <div class="flex gap-5">
-      <nav
-        class="flex h-225 w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
-      >
-        <h1 class="px-5 font-bold mb-17">SMK TI BALI GLOBAL DENPASAR</h1>
-        <p class="text-sm text-grey my-4 px-5">OVERVIEW</p>
+      <!-- SIDE BAR -->
 
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
+        <div class="flex w-70">
+        <nav
+          class="flex absolute h-225 w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
         >
-          <a href="/dashboard.html" class="text-[20px] font-bold">Dashboard</a>
-        </div>
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)] bg-[var(--color-secondary)]"
-        >
-          <a href="#Student" class="text-[20px] font-bold">Student</a>
-        </div>
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
-        >
-          <a href="/teacher/teacher.html" class="text-[20px] font-bold"
-            >Teacher</a
+          <div
+            class="flex flex-row mb-15 p-6 gap-3 items-center justify-center"
           >
-        </div>
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
-        >
-          <a href="/major/major.html" class="text-[20px] font-bold">Major</a>
-        </div>
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
-        >
-          <a href="/subject/subject.html" class="text-[20px] font-bold"
-            >Subjects</a
+            <img src="/assets/logo_TI.png" alt="" class="w-14" />
+            <h1 class="font-bold">SMK TI BALI GLOBAL DENPASAR</h1>
+          </div>
+
+          <!-- Side Bar Part 2 -->
+          <p class="text-sm text-grey my-4 px-5">OVERVIEW</p>
+
+          <div
+            class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
           >
-        </div>
-        <div
-          class="flex items-center w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
-        >
-          <a href="extra/extra.html" class="text-[20px] font-bold"
-            >Extraculliculer</a
+            <img src="/assets/icon/home-icon.png" alt="" />
+            <a href="/dashboard.php" class="text-[20px] font-bold">Dashboard</a>
+          </div>
+
+          <div
+            class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 bg-[var(--color-secondary)] hover:bg-[var(--color-accent)]"
           >
-        </div>
-      </nav>
+            <img src="/assets/icon/student-icon.png" alt="" />
+            <a href="/student/student.php" class="text-[20px] font-bold"
+              >Student</a
+            >
+          </div>
+          <div
+            class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
+          >
+            <img src="/assets/icon/teacher-icon.png" alt="" />
+            <a href="/teacher/teacher.html" class="text-[20px] font-bold"
+              >Teacher</a
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
+          >
+            <img src="/assets/icon/major-icon.png" alt="" />
+            <a href="/major/major.html" class="text-[20px] font-bold">Major</a>
+          </div>
+          <div
+            class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
+          >
+            <img src="/assets/icon/subject-icon.png" alt="" />
+            <a href="/subject/subject.html" class="text-[20px] font-bold">
+              Subjects
+            </a>
+          </div>
+          <div
+            class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
+          >
+            <img src="/assets/icon/extracurricular-icon.png" alt="" />
+            <a href="/extra/extra.html" class="text-[20px] font-bold"
+              >Extraculliculer</a
+            >
+          </div>
+
+          <!-- Log out -->
+          <div class="flex px-5 py-7 items-center justify-center w-full">
+            <div
+              class="flex justify-center items-center h-12 w-40 rounded-[12px] gap-3 bg-white"
+            >
+              <img src="/assets/icon/logout-icon.png" alt="" />
+              <a href="/index.php" class="text-red"> Logout</a>
+            </div>
+          </div>
+        </nav>
+      </div>
 
       <!-- Main Content -->
       <div class="flex flex-col h-full m-10">
