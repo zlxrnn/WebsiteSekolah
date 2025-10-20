@@ -39,14 +39,14 @@ if(isset($_SESSION['username'])){
 
       <div class="flex flex-col flex-1 min-w-50 justify-center items-start p-8">
         <form
-          method="POST"
+          action="login.php"
+          method="post"
           class="flex w-4/5 items-start justify-center flex-col max-w-95"
         >
           <div class="relative w-full my-3">
             <label class="my-2 text-primary">Username</label>
             <input
               type="text"
-              id="name"
               name="username"
               required
               placeholder="Your Username"
@@ -59,14 +59,13 @@ if(isset($_SESSION['username'])){
             <input
               class="w-full p-4 border-2 border-primary rounded-[10px] focus:"
               type="password"
-              id="Password"
-              name="Password"
+              name="password"
               required
               placeholder="Your Password"
             />
           </div>
+          <button type="submit" class="flex justify-center mt-4 items-center rounded h-10 bg-primary text-white w-26">Login</button>
         </form>
-        <button type="submit" class="flex justify-center mt-4 items-center rounded h-10 bg-primary text-white w-26">Login</button>
       </div>
     </section>
   </body>

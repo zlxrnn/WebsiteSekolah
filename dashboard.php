@@ -12,7 +12,7 @@ if(!isset($_SESSION['username'])){
     <link href="./output.css" rel="stylesheet" />
     <title>Dashboard</title>
   </head>
-  <body class="leading-1.6">
+  <body class="leading-1.6 relative">
     <div class="flex gap-5">
       <!-- SideBar -->
       <nav
@@ -37,7 +37,7 @@ if(!isset($_SESSION['username'])){
           class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
         >
           <img src="assets/icon/student-icon.png" alt="" />
-          <a href="student/student.html" class="text-[20px] font-bold"
+          <a href="student/student.php" class="text-[20px] font-bold"
             >Student</a
           >
         </div>
@@ -45,7 +45,7 @@ if(!isset($_SESSION['username'])){
           class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
         >
           <img src="assets/icon/teacher-icon.png" alt="" />
-          <a href="teacher/teacher.html" class="text-[20px] font-bold"
+          <a href="teacher/teacher.php" class="text-[20px] font-bold"
             >Teacher</a
           >
         </div>
@@ -53,13 +53,13 @@ if(!isset($_SESSION['username'])){
           class="flex items-center gap-3 w-full duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
         >
           <img src="assets/icon/major-icon.png" alt="" />
-          <a href="major/major.html" class="text-[20px] font-bold">Major</a>
+          <a href="major/major.php" class="text-[20px] font-bold">Major</a>
         </div>
         <div
           class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
         >
           <img src="assets/icon/subject-icon.png" alt="" />
-          <a href="subject/subject.html" class="text-[20px] font-bold">
+          <a href="subject/subject.php" class="text-[20px] font-bold">
             Subjects
           </a>
         </div>
@@ -67,7 +67,7 @@ if(!isset($_SESSION['username'])){
           class="flex items-center w-full gap-3 duration-300 cursor-pointer px-5 py-7 hover:bg-[var(--color-accent)]"
         >
           <img src="assets/icon/extracurricular-icon.png" alt="" />
-          <a href="extra/extra.html" class="text-[20px] font-bold"
+          <a href="extra/extra.php" class="text-[20px] font-bold"
             >Extraculliculer</a
           >
         </div>
@@ -78,7 +78,7 @@ if(!isset($_SESSION['username'])){
             class="flex justify-center items-center h-12 w-40 rounded-[12px] gap-3 bg-white"
           >
             <img src="assets/icon/logout-icon.png" alt="" />
-            <a href="index.html" class="text-red"> Logout</a>
+            <a href="logout.php" class="text-red"> Logout</a>
           </div>
         </div>
       </nav>
