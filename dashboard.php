@@ -124,8 +124,8 @@
         <div
           class="flex flex-col h-40 w-250 items-start justify-center shadow-2xl rounded bg-grey pl-15"
         >
-          <h1 class="text-3xl font-black">DASHBOARD</h1>
-          <p class="pt-1 text-sm">Welcome Back!</p>
+          <h1 class="text-4xl font-black">DASHBOARD</h1>
+          <p class="pt-1 text-l">Welcome Back!</p>
         </div>
 
         <div
@@ -177,8 +177,8 @@
           </div>
 
           <div class="my-10 flex flex-col justify-center items-center h-37 w-44 bg-grey rounded shadow-2xl">
-            <h1 class="text-2xl mb-2 font-bold">Extraculliculer</h1>
-            <div class="flex flex-row gap-3">          
+            <h1 class="text-2xl mb-2 font-bold">Extra</h1>
+            <div class="flex flex-row gap-3">
               <img src="assets/icon/ekstra.png" alt=""/>
               <h1 class="text-4xl font-extrabold"><?php echo $data_extracurricular['total']; ?></h1>
             </div>

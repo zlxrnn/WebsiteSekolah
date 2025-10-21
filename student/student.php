@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../output.css" rel="stylesheet" />
-    <title>Siswa - Dashboard</title>
+    <title>Student - Dashboard</title>
   </head>
   <body>
     <div class="flex gap-5">
