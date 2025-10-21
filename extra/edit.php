@@ -1,6 +1,5 @@
 <?php include '../koneksi.php'; 
 
-// Ambil data ekstrakurikuler berdasarkan ID
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = mysqli_query($conn, "SELECT * FROM ekstra WHERE id='$id'");
@@ -11,10 +10,9 @@ if(isset($_GET['id'])) {
         exit();
     }
     
-    // Jika timetable hanya berisi jam mulai saja
-    $jam_mulai = $data['timetable']; // Langsung ambil dari timetable
-    $hari = $data['hari']; // Ambil hari dari kolom terpisah
-    $jam_selesai = ''; // Kosongkan jam selesai atau set default
+    $jam_mulai = $data['timetable'];
+    $hari = $data['hari'];
+    $jam_selesai = '';
     
 } else {
     echo "<script>alert('ID ekstrakurikuler tidak valid');window.location='extra.php';</script>";

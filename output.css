@@ -40,6 +40,9 @@
     padding: 0;
     border: 0 solid;
   }
+  *.no-scroll {
+    overflow: hidden;
+  }
   html, :host {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;

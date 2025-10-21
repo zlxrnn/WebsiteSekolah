@@ -63,14 +63,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="./output.css" rel="stylesheet" />
     <title>Dashboard</title>
   </head>
-  <body class="leading-1.6 relative">
+  <body class="leading-1.6 relative h-screen overflow-hidden">
     <div class="flex gap-5">
       <!-- SideBar -->
       <nav
-        class="flex h-225 w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
+        class="flex h-screen w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
       >
         <div class="flex flex-row mb-15 p-6 gap-3 items-center justify-center">
           <img src="assets/logo_TI.png" alt="" class="w-14" />

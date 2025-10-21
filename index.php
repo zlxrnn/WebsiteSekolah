@@ -29,7 +29,7 @@ if(isset($_SESSION['username'])){
       <div
         class="flex flex-col bg-[url('./assets/img_hero.png')] w-150 bg-cover bg-center bg-no-repeat relative text-left justify-center items-center"
       >
-        <div class="flex flex-col items-start justify-center">
+        <div class="flex flex-col items-left justify-left text-left">
           <h1 class="text-7xl font-bold text-white text-left mb-5 max-w-82">
             Hello, Welcome!
           </h1>

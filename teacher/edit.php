@@ -47,7 +47,7 @@ if(isset($_POST['update'])){
       <!-- SideBar -->
         <div class="flex w-70">
         <nav
-          class="flex absolute h-225 w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
+          class="flex absolute h-screen w-70 flex-col justify-center items-start bg-[var(--color-primary)] text-[var(--color-white)]"
         >
           <div
             class="flex flex-row mb-15 p-6 gap-3 items-center justify-center"
