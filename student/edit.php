@@ -28,7 +28,7 @@
           WHERE id='$id'";
       
       if(mysqli_query($conn, $update_query)) {
-          echo "<script>alert('Data siswa berhasil diperbarui');window.location='student.php';</script>";
+          echo "<script>alert('Data Siswa berhasil diperbarui');window.location='student.php';</script>";
       } else {
           echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
       }

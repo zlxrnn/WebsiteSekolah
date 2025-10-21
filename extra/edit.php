@@ -35,7 +35,7 @@ if(isset($_POST['update'])){
         WHERE id='$id'";
     
     if(mysqli_query($conn, $update_query)) {
-        echo "<script>alert('Data ekstrakurikuler berhasil diperbarui');window.location='extra.php';</script>";
+        echo "<script>alert('Data Ekstrakurikuler berhasil diperbarui');window.location='extra.php';</script>";
     } else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }

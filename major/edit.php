@@ -28,7 +28,7 @@ if(isset($_POST['update'])){
         WHERE id='$id'";
     
     if(mysqli_query($conn, $update_query)) {
-        echo "<script>alert('Data jurusan berhasil diperbarui');window.location='major.php';</script>";
+        echo "<script>alert('Data Jurusan berhasil diperbarui');window.location='major.php';</script>";
     } else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
@@ -42,7 +42,7 @@ if(isset($_POST['update'])){
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Major - Dashboard</title>
-    <link href="../Major - Dashboard.css" rel="stylesheet" />
+    <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
     <div class="flex gap-5">

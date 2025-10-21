@@ -72,8 +72,8 @@
         </div>
         <div class=" flex flex-col">
           <div class="flex flex-row w-full px-6">
-            <div class="relative w-full my-6">
-              <form method="GET" action="" class="flex items-center gap-4">
+            <div class="relative w-full my-6 ">
+              <form method="GET" action="" class="flex items-center gap-9">
                 <input 
                   class="w-80 p-4 border-2 border-primary rounded-[10px] focus:outline-none focus:border-primary-dark" 
                   type="text" 

@@ -5,6 +5,8 @@
       header("Location: index.php");
   }
 
+  $uppercaseName = ucfirst($_SESSION['username']);
+
   $data_teacher = ['total' => 0];
   $data_student = ['total' => 0];
   $data_major = ['total' => 0];
@@ -125,7 +127,7 @@
           class="flex flex-col h-40 w-250 items-start justify-center shadow-2xl rounded bg-grey pl-15"
         >
           <h1 class="text-4xl font-black">DASHBOARD</h1>
-          <p class="pt-1 text-l">Welcome Back!</p>
+          <p class="pt-1 text-l">Welcome Back! <?php echo $uppercaseName; ?></p>
         </div>
 
         <div
@@ -148,7 +150,7 @@
             <h1 class="text-2xl mb-2 font-bold">Teacher</h1>
             <div class="flex flex-row gap-3">
               <img src="assets/icon/guru.png" alt=""/>
-              <h1 class="text-4xl font-extrabold"> <?php echo $data_teacher['total']; ?></h1>
+              <h1 class="text-4xl font-m"> <?php echo $data_teacher['total']; ?></h1>
             </div>
           </div>
 
@@ -156,7 +158,7 @@
             <h1 class="text-2xl mb-2 font-bold">Student</h1>
             <div class="flex flex-row gap-3">
               <img src="assets/icon/siswa.png" alt="" />
-              <h1 class="text-4xl font-extrabold"><?php echo $data_student['total']; ?></h1>
+              <h1 class="text-4xl font-m"><?php echo $data_student['total']; ?></h1>
             </div>
           </div>
 
@@ -164,7 +166,7 @@
             <h1 class="text-2xl mb-2 font-bold">Major</h1>
             <div class="flex flex-row gap-3">
               <img src="assets/icon/jurusan.png" alt=""/>
-              <h1 class="text-4xl font-extrabold"><?php echo $data_major['total']; ?></h1>
+              <h1 class="text-4xl font-m"><?php echo $data_major['total']; ?></h1>
             </div>
           </div>
 
@@ -172,7 +174,7 @@
             <h1 class="text-2xl mb-2 font-bold">Subject</h1>
             <div class="flex flex-row gap-3">
               <img src="assets/icon/mapel.png" alt=""/>
-              <h1 class="text-4xl font-extrabold"><?php echo $data_subject['total']; ?></h1>
+              <h1 class="text-4xl font-m"><?php echo $data_subject['total']; ?></h1>
             </div>
           </div>
 
@@ -180,7 +182,7 @@
             <h1 class="text-2xl mb-2 font-bold">Extra</h1>
             <div class="flex flex-row gap-3">
               <img src="assets/icon/ekstra.png" alt=""/>
-              <h1 class="text-4xl font-extrabold"><?php echo $data_extracurricular['total']; ?></h1>
+              <h1 class="text-4xl font-m"><?php echo $data_extracurricular['total']; ?></h1>
             </div>
               </div>
         </div>
